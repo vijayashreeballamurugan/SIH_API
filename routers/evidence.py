@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+from uuid import UUID
 from database import get_db
 from models.evidence import Evidence
 from auth_dependency import get_current_user
@@ -9,7 +10,7 @@ router = APIRouter(
 )
 @router.post("/")
 def create_evidence(
-    detection_id: int,
+    detection_id: UUID,
     file_name: str,
     file_path: str,
     file_type: str,

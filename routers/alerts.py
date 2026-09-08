@@ -2,11 +2,12 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from database import get_db
 from models.alert import Alert
-from auth_dependency import get_current_user
+from auth_dependency import get_current_user 
+from uuid import UUID
 router = APIRouter(prefix="/api/alerts", tags=["Alerts"])
 @router.post("/")
 def create_alert(
-    camera_id: int,
+    camera_id: UUID,
     alert_type: str,
     message: str,
     db: Session = Depends(get_db),

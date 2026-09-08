@@ -12,7 +12,8 @@ def create_person(
     full_name: str,
     person_code: str,
     person_type: str = "AUTHORIZED",
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: int = Depends(get_current_user)
 ):
     new_person = Person(
         full_name=full_name,
@@ -42,7 +43,8 @@ def update_person(
     person_code: str,
     person_type: str = "AUTHORIZED",
     status: str = "ACTIVE",
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: int = Depends(get_current_user)
 ):
     person = db.query(Person).filter(
         Person.id == person_id
@@ -66,7 +68,8 @@ def update_person(
 @router.delete("/{person_id}")
 def delete_person(
     person_id: UUID,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: int = Depends(get_current_user)
 ):
     person = db.query(Person).filter(
         Person.id == person_id

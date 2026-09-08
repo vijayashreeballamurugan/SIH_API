@@ -1,10 +1,11 @@
 from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from database import Base
 class Evidence(Base):
     __tablename__ = "evidence"
     id = Column(Integer, primary_key=True, index=True)
-    detection_id = Column(Integer, nullable=True)
+    detection_id = Column(UUID(as_uuid=True), nullable=True)
     file_name = Column(String, nullable=False)
     file_path = Column(String, nullable=False)
     file_type = Column(String, nullable=False)
