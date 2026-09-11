@@ -14,6 +14,8 @@ from routers.persons import router as person_router
 from routers.evidence import router as evidence_router
 from routers.dashboard import router as dashboard_router
 from routers.history import router as history_router
+from routers.person_image import router as person_image_router
+from routers.ocr_result import router as ocr_result_router
 app = FastAPI()
 app.include_router(auth_router)
 app.include_router(camera_router)
@@ -23,6 +25,8 @@ app.include_router(person_router)
 app.include_router(evidence_router)
 app.include_router(dashboard_router)
 app.include_router(history_router)
+app.include_router(person_image_router)
+app.include_router(ocr_result_router)
 Base.metadata.create_all(bind=engine)
 @app.get("/api/health")
 def health_check():
